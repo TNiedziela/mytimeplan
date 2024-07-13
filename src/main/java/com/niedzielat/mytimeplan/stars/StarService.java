@@ -5,7 +5,12 @@ import java.util.stream.Collectors;
 
 public class StarService {
 
-    public List<Star> findClosestSTars(List<Star> stars, int size) {
+    public List<Star> findClosestStars(List<Star> stars, int size) {
+        if (stars.isEmpty()) {
+            throw new RuntimeException("Stars list is empty");
+        } else if (size <= 0) { // making an assumption that if provided size is bigger than number of stars, then all the stars will be returned
+            throw new RuntimeException("Provided size must be bigger than 0, but got: size = " + size);
+        }
         return stars.stream()
                 .sorted(Comparator.comparingLong(Star::getDistance))
                 .limit(size)
@@ -13,6 +18,9 @@ public class StarService {
     }
 
     public Map<Long, Integer> getNumberOfStarsByDistances(List<Star> stars) {
+        if (stars.isEmpty()) {
+            throw new RuntimeException("Stars list is empty");
+        }
         Map<Long, Integer> starsMap = new HashMap<>();
         for (Star star : stars) {
             Long currentDistance = star.getDistance();
@@ -26,6 +34,9 @@ public class StarService {
     }
 
     public Collection<Star> getUniqueStars(Collection<Star> stars) {
+        if (stars.isEmpty()) {
+            throw new RuntimeException("Stars list is empty");
+        }
         Map<String, Integer> nameToOccuranceMap = new HashMap<>();
         for (Star star : stars) {
             String currentName = star.getName();

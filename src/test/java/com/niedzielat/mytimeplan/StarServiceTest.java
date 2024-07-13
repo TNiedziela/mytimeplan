@@ -18,7 +18,7 @@ class StarServiceTest {
         StarService starService = new StarService();
         List<Star> starsToTest = getStarsToTest();
 
-        List<Star> closestFiveStars = starService.findClosestSTars(starsToTest, 5);
+        List<Star> closestFiveStars = starService.findClosestStars(starsToTest, 5);
 
         Assertions.assertEquals(5, closestFiveStars.size());
         Assertions.assertEquals(closestFiveStars.get(0).getDistance(), 1111432L);
